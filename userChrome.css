@@ -22,3 +22,18 @@
 * {
   font-family: "IosevkaTerm Nerd Font Propo" !important;
 }
+
+/* border.css rounds #zen-browser-background only in normal sizemode, so a
+   maximized window renders square. #main-window keeps -moz-appearance:
+   -moz-window, and #browser paints behind its children, so neither shows a
+   radius. Match the theme selector form to win on source order. */
+:root[sizemode="normal"] #zen-browser-background,
+:root[sizemode="maximized"] #zen-browser-background {
+  border-radius: var(--na-window-border-radius) !important;
+  corner-shape: var(--wf-shape-window) !important;
+}
+
+/* Remove the window border drawn by #browser::before. */
+#browser::before {
+  border: none !important;
+}
